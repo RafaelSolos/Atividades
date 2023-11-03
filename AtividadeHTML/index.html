@@ -4,54 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="AtividadeHTML/css/style1.css">
     <title>Quiz</title>
-    
+
 
 </head>
 
 
 
+
+<h1>Quiz</h1>
+
 <body>
 
-    <div class="imagem">
-        <link rel="stylesheet" href="img/33331379_m003t0641_a_clipboard_14oct22.jpg">
-    </div>
-    
     <div id="quiz-container">
-        <h1>Quiz</h1>
+
         <div id="pergunta"></div>
         <div id="opcao"></div>
         <div id="resposta"></div>
-    </div>
 
+    </div>
+    <button id="reiniciar" style="display: none;" onclick="reiniciarQuiz()">Reiniciar</button>
     <script>
-        const questions = [
-            {
-                pergunta: "Qual é a capital do Brasil?",
-                opcao: ["São Paulo", "Rio de Janeiro", "Brasília"],
-                correctAnswer: "Brasília"
-            },
-            {
-                pergunta: "Quantos planetas existem no sistema solar?",
-                opcao: ["7", "8", "9"],
-                correctAnswer: "8"
-            },
-            {
-                pergunta: "Quem escreveu 'Dom Quixote'?",
-                opcao: ["Miguel de Cervantes", "William Shakespeare", "Charles Dickens"],
-                correctAnswer: "Miguel de Cervantes"
-            },
-            {
-                pergunta: "Quem pintou a 'Mona Lisa'?",
-                opcao: ["Pablo Picasso", "Vincent van Gogh", "Leonardo da Vinci"],
-                correctAnswer: "Leonardo da Vinci"
-            },
-            {
-                pergunta: "Qual é o maior animal terrestre?",
-                opcao: ["Elefante Africano", "Girafa", "Rinoceronte Branco"],
-                correctAnswer: "Elefante Africano"
-            }
+        const questions = [{
+            pergunta: "Qual seletor CSS é usado para direcionar todos os elementos de âncora (links)?",
+            opcao: ["< a >", "< link >", "< ul >"],
+            correctAnswer: "<a>"
+        },
+        {
+            pergunta: "Pergunta: Qual tag HTML é usada para criar uma quebra de linha?",
+            opcao: ["< br >", "< p >", "< h1 >"],
+            correctAnswer: "< br >"
+        },
+        {
+            pergunta: "Pergunta: Qual método JavaScript é usado para adicionar um elemento ao final de um array?",
+            opcao: ["pop()", "push()", "function"],
+            correctAnswer: "push()"
+        },
+        {
+            pergunta: "Pergunta: Qual objeto JavaScript é usado para manipular elementos HTML em uma página??",
+            opcao: ["function", "window", "document"],
+            correctAnswer: "document"
+        },
+        {
+            pergunta: "Pergunta: Qual propriedade CSS é usada para controlar a largura de uma borda?Qual é o maior animal terrestre?",
+            opcao: ["border-width", "border-top", "border-style"],
+            correctAnswer: "border-width"
+        }
+
         ];
 
         let currentQuestionIndex = 0;
@@ -94,6 +94,15 @@
             perguntaElement.textContent = '';
             opcaoElement.innerHTML = '';
             respostaElement.textContent = `Você acertou ${score} de ${questions.length} perguntas.`;
+            document.getElementById('reiniciar').style.display = 'block';
+        }
+
+        function reiniciarQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            respostaElement.textContent = '';
+            document.getElementById('reiniciar').style.display = 'none';
+            displayQuestion();
         }
 
         displayQuestion();

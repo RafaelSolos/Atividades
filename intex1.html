@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="AtividadeHTML/css/style1.css">
+    <title>Quiz</title>
+
+
+</head>
+
+
+
+
+<h1>Quiz</h1>
+
+<body>
+
+    <div id="quiz-container">
+
+        <div id="pergunta"></div>
+        <div id="opcao"></div>
+        <div id="resposta"></div>
+
+    </div>
+    <button id="reiniciar" style="display: none;" onclick="reiniciarQuiz()">Reiniciar</button>
+    <script>
+        const questions = [{
+            pergunta: "Qual seletor CSS é usado para direcionar todos os elementos de âncora (links)?",
+            opcao: ["< a >", "< link >", "< ul >"],
+            correctAnswer: "<a>"
+        },
+        {
+            pergunta: "Pergunta: Qual tag HTML é usada para criar uma quebra de linha?",
+            opcao: ["< br >", "< p >", "< h1 >"],
+            correctAnswer: "< br >"
+        },
+        {
+            pergunta: "Pergunta: Qual método JavaScript é usado para adicionar um elemento ao final de um array?",
+            opcao: ["pop()", "push()", "function"],
+            correctAnswer: "push()"
+        },
+        {
+            pergunta: "Pergunta: Qual objeto JavaScript é usado para manipular elementos HTML em uma página??",
+            opcao: ["function", "window", "document"],
+            correctAnswer: "document"
+        },
+        {
+            pergunta: "Pergunta: Qual propriedade CSS é usada para controlar a largura de uma borda?Qual é o maior animal terrestre?",
+            opcao: ["border-width", "border-top", "border-style"],
+            correctAnswer: "border-width"
+        }
+
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        const perguntaElement = document.getElementById('pergunta');
+        const opcaoElement = document.getElementById('opcao');
+        const respostaElement = document.getElementById('resposta');
+
+        function displayQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                const currentQuestion = questions[currentQuestionIndex];
+                perguntaElement.textContent = currentQuestion.pergunta;
+                opcaoElement.innerHTML = '';
+
+                currentQuestion.opcao.forEach((option) => {
+                    const button = document.createElement('button');
+                    button.textContent = option;
+                    button.addEventListener('click', () => checkAnswer(option, currentQuestion.correctAnswer));
+                    opcaoElement.appendChild(button);
+                });
+            } else {
+                displayResult();
+            }
+        }
+
+        function checkAnswer(userAnswer, correctAnswer) {
+            if (userAnswer === correctAnswer) {
+                score++;
+                respostaElement.textContent = 'Resposta correta!';
+            } else {
+                respostaElement.textContent = `Resposta incorreta. A resposta correta é: ${correctAnswer}`;
+            }
+
+            currentQuestionIndex++;
+            displayQuestion();
+        }
+
+        function displayResult() {
+            perguntaElement.textContent = '';
+            opcaoElement.innerHTML = '';
+            respostaElement.textContent = `Você acertou ${score} de ${questions.length} perguntas.`;
+            document.getElementById('reiniciar').style.display = 'block';
+        }
+
+        function reiniciarQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            respostaElement.textContent = '';
+            document.getElementById('reiniciar').style.display = 'none';
+            displayQuestion();
+        }
+
+        displayQuestion();
+    </script>
+</body>
+
+</html>
