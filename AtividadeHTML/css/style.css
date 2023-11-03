@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    
+}
+
+
+#imagem {
+    display: flex;
+}
+
+#quiz-container {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    color: black;
+}
+
+#pergunta {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: black;
+    
+}
+
+#opcao {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: crimson;
+}
+
+
+
+#resposta {
+    font-weight: bold;
+    margin-top: 10px;
+
+}
